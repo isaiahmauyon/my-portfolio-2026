@@ -32,7 +32,6 @@ export type Project = {
   title: string;
   category: string;
   href?: string;
-  image?: string;
 };
 
 export const projects: Project[] = [
@@ -40,25 +39,21 @@ export const projects: Project[] = [
     title: "Harp",
     category: "AI - Powered Customer Experience",
     href: "#",
-    image: "/figma/img/harp.png",
   },
   {
     title: "Seesail",
     category: "Digital Banking / Business Management",
     href: "#",
-    image: "/figma/img/seesail.png",
   },
   {
     title: "Vittas Payment Gateway and Admin portal",
     category: "AI - Powered Customer Experience",
     href: "#",
-    image: "/figma/img/vittas.png",
   },
   {
     title: "Brane",
     category: "Digital Banking / Business Management",
     href: "#",
-    image: "/figma/img/brane.png",
   },
 ];
 
