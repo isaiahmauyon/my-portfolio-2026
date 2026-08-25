@@ -1,58 +1,118 @@
 export const siteConfig = {
-  name: "Isaiah Mauyon",
-  role: "Software Engineer",
-  description:
-    "Software engineer building thoughtful, performant web experiences. Portfolio, projects, and ways to get in touch.",
-  email: "hello@example.com",
-  location: "Remote",
-  socials: {
-    github: "https://github.com/isaiahmauyon",
-    linkedin: "https://www.linkedin.com/",
-    twitter: "https://twitter.com/",
+  brand: "Pauloo.design",
+  name: "Paul Isaiah",
+  roles: ["Lead Product Designer", "Frontend Engineer"],
+  headline: {
+    lead: "Designing complex products.",
+    trail: " Building better experiences.",
   },
+  intro:
+    "I'm Paul Isaiah, a Lead Product Designer with 5 years of experience designing digital products across fintech, Lending, SaaS, and healthtech — with hands-on frontend experience that helps me take ideas beyond Figma.",
+  resumeUrl: "/resume.pdf",
+  nav: [
+    { label: "Work", href: "#work" },
+    { label: "About", href: "#about" },
+    { label: "Contact", href: "#socials" },
+  ],
 };
 
-export const skills: string[] = [
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Node.js",
-  "Tailwind CSS",
-  "PostgreSQL",
-  "GraphQL",
-  "AWS",
+export type Showcase = {
+  title: string;
+  image?: string;
+};
+
+/** Top device-mockup band. Drop images in public/figma/img and set `image`. */
+export const showcase: Showcase[] = [
+  { title: "Onboarding", image: "/figma/img/onboarding.png" },
+  { title: "Transaction Details", image: "/figma/img/transaction-details.png" },
+  { title: "Pop up", image: "/figma/img/popup.png" },
 ];
 
 export type Project = {
   title: string;
-  description: string;
-  tags: string[];
+  category: string;
   href?: string;
-  repo?: string;
+  image?: string;
 };
 
 export const projects: Project[] = [
   {
-    title: "Project One",
-    description:
-      "A short description of what this project does, the problem it solves, and the impact it had.",
-    tags: ["Next.js", "TypeScript", "Tailwind"],
+    title: "Harp",
+    category: "AI - Powered Customer Experience",
     href: "#",
-    repo: "https://github.com/isaiahmauyon",
+    image: "/figma/img/harp.png",
   },
   {
-    title: "Project Two",
-    description:
-      "Another highlight project. Describe the interesting technical challenge and your role in solving it.",
-    tags: ["React", "Node.js", "PostgreSQL"],
+    title: "Seesail",
+    category: "Digital Banking / Business Management",
     href: "#",
-    repo: "https://github.com/isaiahmauyon",
+    image: "/figma/img/seesail.png",
   },
   {
-    title: "Project Three",
-    description:
-      "A side project or open-source contribution worth showing off. Keep it concise and outcome-focused.",
-    tags: ["GraphQL", "AWS"],
-    repo: "https://github.com/isaiahmauyon",
+    title: "Vittas Payment Gateway and Admin portal",
+    category: "AI - Powered Customer Experience",
+    href: "#",
+    image: "/figma/img/vittas.png",
   },
+  {
+    title: "Brane",
+    category: "Digital Banking / Business Management",
+    href: "#",
+    image: "/figma/img/brane.png",
+  },
+];
+
+export type Experience = {
+  period: string;
+  company: string;
+  description: string;
+};
+
+export const experience: Experience[] = [
+  {
+    period: "Nov 2024 — Present",
+    company: "Seesail",
+    description:
+      "Leading product design for a digital banking and business-management platform — wallets, funding, settlements, disputes, inventory, and reporting.",
+  },
+  {
+    period: "Jun 2023 — Present",
+    company: "Vittas Inc",
+    description:
+      "Designing financial and healthcare experiences: healthcare financing, loan flows, telehealth, and the Vittas Core business suite.",
+  },
+  {
+    period: "Mar 2025 — Aug 2025",
+    company: "Selego",
+    description: "UI and UX design across product surfaces.",
+  },
+  {
+    period: "Apr 2024 — Present",
+    company: "YTL Technologies Ltd",
+    description: "Product design work across digital products.",
+  },
+  {
+    period: "Sep 2022 — Jan 2023",
+    company: "Harp",
+    description:
+      "Designed an AI-powered customer-experience platform for managing conversations and automating responses.",
+  },
+  {
+    period: "Jun 2021 — Aug 2022",
+    company: "Hashbangs Technologies",
+    description: "Product design across client and internal products.",
+  },
+];
+
+export type Social = {
+  platform: "linkedin" | "instagram" | "github" | "x";
+  handle: string;
+  href: string;
+};
+
+export const socials: Social[] = [
+  { platform: "linkedin", handle: "@isaiahpaul", href: "https://www.linkedin.com/" },
+  { platform: "instagram", handle: "@pauloo.design", href: "https://www.instagram.com/" },
+  { platform: "github", handle: "@pauloo.design", href: "https://github.com/" },
+  { platform: "x", handle: "@pauloo.design", href: "https://x.com/" },
 ];

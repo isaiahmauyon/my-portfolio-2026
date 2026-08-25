@@ -1,31 +1,29 @@
 import Link from "next/link";
 import { siteConfig } from "@/data/site";
-
-const links = [
-  { href: "/#projects", label: "Projects" },
-  { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Contact" },
-];
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-background/70 backdrop-blur">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-sm font-semibold tracking-tight">
-          {siteConfig.name}
-        </Link>
-        <ul className="flex items-center gap-6 text-sm text-muted">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+    <header className="sticky top-0 z-50 border-b border-line bg-bg/80 backdrop-blur">
+      <nav className="mx-auto flex max-w-content items-center justify-between px-6 py-4 sm:px-10 lg:px-[120px]">
+        <div className="flex items-center gap-10 lg:gap-[200px]">
+          <Link href="#top" className="text-body-md font-bold text-text-primary">
+            {siteConfig.brand}
+          </Link>
+          <ul className="hidden items-center gap-[38px] sm:flex">
+            {siteConfig.nav.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="text-caption-md font-medium text-text-secondary transition-colors hover:text-text-primary"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <ThemeToggle />
       </nav>
     </header>
   );
