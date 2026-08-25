@@ -43,3 +43,21 @@ body {
   background: #f2c94c;
   color: #1b1a1a;
 }
+
+/* Experience: focus the hovered row, blur the rest */
+.exp-row {
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+.exp-list:hover .exp-row {
+  filter: blur(2px);
+  opacity: 0.5;
+}
+.exp-list:hover .exp-row:hover {
+  filter: none;
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .exp-row {
+    transition: none;
+  }
+}

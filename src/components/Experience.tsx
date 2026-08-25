@@ -20,12 +20,12 @@ export default function Experience() {
         </a>
       </Reveal>
 
-      <div className="flex flex-col gap-8">
+      <div className="exp-list flex flex-col gap-8">
         {experience.map((role, i) => (
           <Reveal
             key={`${role.company}-${role.period}`}
             delay={i * 0.05}
-            className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between"
+            className="exp-row flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between"
           >
             <p className="text-caption-md text-gray3 sm:whitespace-nowrap">{role.period}</p>
             <div className="flex flex-col gap-2 sm:w-[430px]">
