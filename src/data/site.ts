@@ -32,6 +32,8 @@ export type Project = {
   title: string;
   category: string;
   href?: string;
+  /** Optional thumbnail for the grid view (drop into public/figma/img). */
+  image?: string;
 };
 
 export const projects: Project[] = [
