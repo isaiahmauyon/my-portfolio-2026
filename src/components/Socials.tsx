@@ -1,6 +1,13 @@
-import { socials } from "@/data/site";
+import { socials, type Social } from "@/data/site";
 import Reveal from "./Reveal";
 import { socialIcons } from "./icons";
+
+/** Brand colors. Instagram bakes its own gradient, so it needs no color here. */
+const brandColor: Partial<Record<Social["platform"], string>> = {
+  linkedin: "#0A66C2",
+  github: "var(--brand-github)",
+  x: "var(--brand-x)",
+};
 
 export default function Socials() {
   return (
@@ -20,7 +27,10 @@ export default function Socials() {
                 rel="noreferrer"
                 className="flex w-fit items-center gap-3 text-text-secondary transition-colors hover:text-text-primary"
               >
-                <Icon className="shrink-0" />
+                <Icon
+                  className="shrink-0"
+                  style={brandColor[social.platform] ? { color: brandColor[social.platform] } : undefined}
+                />
                 <span className="text-label-md font-medium">{social.handle}</span>
               </a>
             </Reveal>

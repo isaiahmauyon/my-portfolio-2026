@@ -81,10 +81,19 @@ export function LinkedInIcon(props: IconProps) {
 
 export function InstagramIcon(props: IconProps) {
   return (
-    <svg {...base(props)} stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="2" width="20" height="20" rx="5" />
-      <circle cx="12" cy="12" r="4.2" />
-      <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+    <svg {...base(props)}>
+      <defs>
+        <linearGradient id="ig-gradient" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stopColor="#feda75" />
+          <stop offset="0.25" stopColor="#fa7e1e" />
+          <stop offset="0.5" stopColor="#d62976" />
+          <stop offset="0.75" stopColor="#962fbf" />
+          <stop offset="1" stopColor="#4f5bd5" />
+        </linearGradient>
+      </defs>
+      <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="url(#ig-gradient)" strokeWidth={1.9} />
+      <circle cx="12" cy="12" r="4.2" fill="none" stroke="url(#ig-gradient)" strokeWidth={1.9} />
+      <circle cx="17.4" cy="6.6" r="1.2" fill="url(#ig-gradient)" />
     </svg>
   );
 }

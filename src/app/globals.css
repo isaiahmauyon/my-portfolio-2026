@@ -13,6 +13,9 @@
   --gray-1: #333333;
   --gray-3: #828282;
   --wordmark: #333333;
+  /* Brand marks that are monochrome and flip with theme */
+  --brand-github: #181717;
+  --brand-x: #000000;
 }
 
 :root[data-theme="dark"] {
@@ -25,6 +28,8 @@
   --gray-1: #e6e6e6;
   --gray-3: #8a8a8a;
   --wordmark: #262626;
+  --brand-github: #f0f6fc;
+  --brand-x: #ffffff;
 }
 
 html {
@@ -56,6 +61,21 @@ body {
 .marquee:hover {
   animation-play-state: paused;
 }
+.marquee-item {
+  position: relative;
+  transition: transform 0.35s ease, filter 0.35s ease, opacity 0.35s ease;
+}
+.marquee:hover .marquee-item {
+  filter: blur(2px);
+  opacity: 0.5;
+  transform: scale(0.97);
+}
+.marquee:hover .marquee-item:hover {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.08);
+  z-index: 2;
+}
 @keyframes marquee-scroll {
   from {
     transform: translateX(0);
@@ -67,6 +87,15 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .marquee {
     animation: none;
+  }
+  .marquee-item {
+    transition: none;
+  }
+  .marquee:hover .marquee-item,
+  .marquee:hover .marquee-item:hover {
+    filter: none;
+    opacity: 1;
+    transform: none;
   }
 }
 
