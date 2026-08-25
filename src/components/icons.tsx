@@ -105,6 +105,24 @@ export function XIcon(props: IconProps) {
   );
 }
 
+export function SoundOnIcon(props: IconProps) {
+  return (
+    <svg {...base(props)} stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 9v6h4l5 4V5L8 9H4z" />
+      <path d="M16 9a3 3 0 0 1 0 6M18.5 7a6 6 0 0 1 0 10" />
+    </svg>
+  );
+}
+
+export function SoundOffIcon(props: IconProps) {
+  return (
+    <svg {...base(props)} stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 9v6h4l5 4V5L8 9H4z" />
+      <path d="M22 9l-6 6M16 9l6 6" />
+    </svg>
+  );
+}
+
 export const socialIcons = {
   linkedin: LinkedInIcon,
   instagram: InstagramIcon,

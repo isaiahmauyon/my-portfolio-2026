@@ -4,6 +4,7 @@ import "./globals.css";
 import { siteConfig } from "@/data/site";
 import Navbar from "@/components/Navbar";
 import MotionProvider from "@/components/MotionProvider";
+import SoundProvider from "@/components/SoundProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -49,8 +50,10 @@ export default function RootLayout({
       </head>
       <body className="font-sans">
         <MotionProvider>
-          <Navbar />
-          <main>{children}</main>
+          <SoundProvider>
+            <Navbar />
+            <main>{children}</main>
+          </SoundProvider>
         </MotionProvider>
       </body>
     </html>

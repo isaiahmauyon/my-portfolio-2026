@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { siteConfig } from "@/data/site";
 import ThemeToggle from "./ThemeToggle";
+import SoundToggle from "./SoundToggle";
 
 export default function Navbar() {
   return (
@@ -31,7 +32,10 @@ export default function Navbar() {
             ))}
           </ul>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center gap-4">
+          <SoundToggle />
+          <ThemeToggle />
+        </div>
       </nav>
     </motion.header>
   );
