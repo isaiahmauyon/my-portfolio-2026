@@ -18,8 +18,8 @@ export function useSound() {
   return useContext(Ctx);
 }
 
-/** Elements that make a hover sound. */
-const HOVER_SELECTOR = "a, button, .exp-row, [data-sound]";
+/** Only these make a hover sound: the case-study link, experience rows, socials. */
+const HOVER_SELECTOR = "[data-sound], .exp-row";
 
 export default function SoundProvider({ children }: { children: ReactNode }) {
   const [enabled, setEnabled] = useState(true);

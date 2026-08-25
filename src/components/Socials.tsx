@@ -14,10 +14,11 @@ export default function Socials() {
           return (
             <Reveal key={social.platform} delay={i * 0.06}>
               <a
+                data-sound
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-3 text-text-secondary transition-colors hover:text-text-primary"
+                className="flex w-fit items-center gap-3 text-text-secondary transition-colors hover:text-text-primary"
               >
                 <Icon className="shrink-0" />
                 <span className="text-label-md font-medium">{social.handle}</span>

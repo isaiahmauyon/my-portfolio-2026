@@ -91,7 +91,7 @@ export default function SelectedWork() {
                       <p className="text-body-md font-medium text-text-primary">{project.title}</p>
                       <p className="text-caption-md font-medium text-text-secondary">{project.category}</p>
                     </div>
-                    <div className="flex w-[123px] shrink-0 items-center justify-between text-text-secondary transition-colors group-hover:text-text-primary">
+                    <div data-sound className="flex w-[123px] shrink-0 items-center justify-between text-text-secondary transition-colors group-hover:text-text-primary">
                       <span className="whitespace-nowrap text-label-md">Read case study</span>
                       <ArrowUpRightIcon className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
