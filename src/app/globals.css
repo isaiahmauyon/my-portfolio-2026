@@ -44,6 +44,32 @@ body {
   color: #1b1a1a;
 }
 
+/* Showcase: seamless auto-scrolling marquee */
+.marquee-item {
+  width: clamp(300px, 34vw, 460px);
+  margin-right: 12px;
+}
+.marquee {
+  animation: marquee-scroll 32s linear infinite;
+  will-change: transform;
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+  }
+}
+
 /* Experience: focus the hovered row, blur the rest */
 .exp-row {
   transition: filter 0.3s ease, opacity 0.3s ease;

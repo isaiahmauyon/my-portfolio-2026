@@ -1,20 +1,23 @@
 import { showcase } from "@/data/site";
 import MediaTile from "./MediaTile";
-import Reveal from "./Reveal";
 
 export default function Showcase() {
+  // Two identical halves so the -50% translate loops seamlessly; each half is
+  // doubled so the strip comfortably fills wide viewports.
+  const half = [...showcase, ...showcase];
+  const track = [...half, ...half];
+
   return (
-    <section className="mx-auto max-w-content px-6 py-16 sm:px-10 lg:px-[120px]">
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-        {showcase.map((item, i) => (
-          <Reveal key={item.title} delay={i * 0.08}>
-            <MediaTile
-              src={item.image}
-              alt={item.title}
-              fit="contain"
-              className="aspect-[526/391] w-full transition-transform duration-500 ease-out hover:scale-[1.03]"
-            />
-          </Reveal>
+    <section className="w-full overflow-hidden py-16" aria-label="Work showcase">
+      <div className="marquee flex w-max">
+        {track.map((item, i) => (
+          <div
+            key={`${item.title}-${i}`}
+            className="marquee-item aspect-[526/391] shrink-0"
+            aria-hidden={i >= half.length}
+          >
+            <MediaTile src={item.image} alt={item.title} fit="contain" className="h-full w-full" />
+          </div>
         ))}
       </div>
     </section>
