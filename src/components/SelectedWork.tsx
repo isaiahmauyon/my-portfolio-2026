@@ -5,22 +5,7 @@ import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { projects, workCategories, type WorkCategory } from "@/data/site";
 import MediaTile from "./MediaTile";
 import Reveal from "./Reveal";
-import {
-  ArrowUpRightIcon,
-  CheckIcon,
-  ChevronDownIcon,
-  CodeIcon,
-  GridIcon,
-  ListIcon,
-  PenIcon,
-  SparklesIcon,
-} from "./icons";
-
-const categoryIcon: Record<WorkCategory, typeof PenIcon> = {
-  "Product Design": PenIcon,
-  Development: CodeIcon,
-  Playground: SparklesIcon,
-};
+import { ArrowUpRightIcon, ChevronDownIcon, GridIcon, ListIcon } from "./icons";
 
 type View = "list" | "grid";
 
@@ -62,8 +47,6 @@ function CategoryDropdown({
     };
   }, [open]);
 
-  const ValueIcon = categoryIcon[value];
-
   return (
     <div ref={ref} className="relative">
       <button
@@ -71,13 +54,14 @@ function CategoryDropdown({
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className="flex h-9 items-center gap-2 rounded-lg border border-line bg-bg px-2.5 text-label-md font-bold text-text-primary shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-colors hover:bg-surface"
+        className="flex h-8 items-center gap-1.5 rounded-lg bg-surface p-1"
       >
-        <ValueIcon width={16} height={16} className="text-text-secondary" />
-        <span>{value}</span>
+        <span className="flex items-center rounded-[7px] bg-bg px-1.5 py-[3px] text-label-md font-bold text-text-primary shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
+          {value}
+        </span>
         <ChevronDownIcon
-          width={16}
-          height={16}
+          width={20}
+          height={20}
           className={`text-text-secondary transition-transform duration-200 ${open ? "rotate-180" : ""}`}
         />
       </button>
@@ -90,32 +74,27 @@ function CategoryDropdown({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ duration: 0.16, ease: [0.21, 0.5, 0.28, 1] }}
-            className="absolute right-0 z-20 mt-2 w-52 origin-top-right overflow-hidden rounded-xl border border-line bg-bg p-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+            className="absolute right-0 z-20 mt-2 w-48 origin-top-right overflow-hidden rounded-xl border border-line bg-bg p-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
           >
-            {workCategories.map((cat) => {
-              const Icon = categoryIcon[cat];
-              const selected = cat === value;
-              return (
-                <li key={cat}>
-                  <button
-                    type="button"
-                    role="option"
-                    aria-selected={selected}
-                    onClick={() => {
-                      onChange(cat);
-                      setOpen(false);
-                    }}
-                    className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-label-md font-medium transition-colors ${
-                      selected ? "bg-surface text-text-primary" : "text-text-secondary hover:bg-surface"
-                    }`}
-                  >
-                    <Icon width={16} height={16} className="shrink-0 text-text-secondary" />
-                    <span className="flex-1">{cat}</span>
-                    {selected && <CheckIcon width={16} height={16} className="shrink-0 text-text-primary" />}
-                  </button>
-                </li>
-              );
-            })}
+            {workCategories.map((cat) => (
+              <li key={cat}>
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected={cat === value}
+                  onClick={() => {
+                    onChange(cat);
+                    setOpen(false);
+                  }}
+                  className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-label-md transition-colors hover:bg-surface ${
+                    cat === value ? "font-bold text-text-primary" : "font-medium text-text-secondary"
+                  }`}
+                >
+                  {cat}
+                  {cat === value && <span className="size-1.5 rounded-full bg-accent" />}
+                </button>
+              </li>
+            ))}
           </motion.ul>
         )}
       </AnimatePresence>
