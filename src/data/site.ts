@@ -28,10 +28,15 @@ export const showcase: Showcase[] = [
   { title: "Pop up", image: "/figma/img/popup.png" },
 ];
 
+export const workCategories = ["Product Design", "Development", "Playground"] as const;
+export type WorkCategory = (typeof workCategories)[number];
+
 export type Project = {
   title: string;
   category: string;
   href?: string;
+  /** Which dropdown filter this belongs to. */
+  type: WorkCategory;
   /** Optional thumbnail for the grid view (drop into public/figma/img). */
   image?: string;
 };
@@ -41,21 +46,25 @@ export const projects: Project[] = [
     title: "Harp",
     category: "AI - Powered Customer Experience",
     href: "#",
+    type: "Product Design",
   },
   {
     title: "Seesail",
     category: "Digital Banking / Business Management",
     href: "#",
+    type: "Product Design",
   },
   {
     title: "Vittas Payment Gateway and Admin portal",
     category: "AI - Powered Customer Experience",
     href: "#",
+    type: "Product Design",
   },
   {
     title: "Brane",
     category: "Digital Banking / Business Management",
     href: "#",
+    type: "Product Design",
   },
 ];
 
