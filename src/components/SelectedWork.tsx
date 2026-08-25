@@ -1,12 +1,30 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { projects } from "@/data/site";
 import MediaTile from "./MediaTile";
 import Reveal from "./Reveal";
 import { ArrowUpRightIcon, ChevronDownIcon, GridIcon, ListIcon } from "./icons";
 
 type View = "list" | "grid";
+
+const stagger: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.07 } },
+};
+
+const rowItem: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.21, 0.5, 0.28, 1] } },
+};
+
+const swap = {
+  initial: { opacity: 0, y: 10 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -10 },
+  transition: { duration: 0.28, ease: [0.21, 0.5, 0.28, 1] as const },
+};
 
 export default function SelectedWork() {
   const [view, setView] = useState<View>("list");
@@ -53,57 +71,66 @@ export default function SelectedWork() {
         </div>
       </Reveal>
 
-      {view === "list" ? (
-        <ul className="flex flex-col gap-4">
-          {projects.map((project, i) => {
-            const isLast = i === projects.length - 1;
-            return (
-              <Reveal
-                key={project.title}
-                as="li"
-                delay={i * 0.06}
-                className={isLast ? "" : "border-b border-line pb-5"}
-              >
-                <a href={project.href} className="group flex items-start gap-1.5">
-                  <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-                    <p className="text-body-md font-medium text-text-primary">{project.title}</p>
-                    <p className="text-caption-md font-medium text-text-secondary">
-                      {project.category}
-                    </p>
-                  </div>
-                  <div className="flex w-[123px] shrink-0 items-center justify-between text-text-secondary transition-colors group-hover:text-text-primary">
-                    <span className="whitespace-nowrap text-label-md">Read case study</span>
-                    <ArrowUpRightIcon className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      <AnimatePresence mode="wait" initial={false}>
+        {view === "list" ? (
+          <motion.ul
+            key="list"
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            exit={swap.exit}
+            viewport={{ once: true, margin: "-80px" }}
+            className="flex flex-col gap-4"
+          >
+            {projects.map((project, i) => {
+              const isLast = i === projects.length - 1;
+              return (
+                <motion.li key={project.title} variants={rowItem} className={isLast ? "" : "border-b border-line pb-5"}>
+                  <a href={project.href} className="group flex items-start gap-1.5">
+                    <div className="flex min-w-0 flex-1 flex-col gap-1.5">
+                      <p className="text-body-md font-medium text-text-primary">{project.title}</p>
+                      <p className="text-caption-md font-medium text-text-secondary">{project.category}</p>
+                    </div>
+                    <div className="flex w-[123px] shrink-0 items-center justify-between text-text-secondary transition-colors group-hover:text-text-primary">
+                      <span className="whitespace-nowrap text-label-md">Read case study</span>
+                      <ArrowUpRightIcon className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+                  </a>
+                </motion.li>
+              );
+            })}
+          </motion.ul>
+        ) : (
+          <motion.div
+            key="grid"
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            exit={swap.exit}
+            viewport={{ once: true, margin: "-80px" }}
+            className="grid grid-cols-1 gap-10 sm:grid-cols-2"
+          >
+            {projects.map((project) => (
+              <motion.div key={project.title} variants={rowItem} className="flex flex-col gap-[17px]">
+                <a href={project.href} className="group flex flex-col gap-[17px]">
+                  <MediaTile
+                    src={project.image}
+                    alt={project.title}
+                    className="aspect-[430/319] w-full rounded-[10px] transition-transform duration-300 group-hover:-translate-y-1"
+                  />
+                  <div className="flex items-start gap-1.5">
+                    <div className="flex min-w-0 flex-1 flex-col gap-1.5">
+                      <p className="text-body-md font-medium text-text-primary">{project.title}</p>
+                      <p className="text-caption-md font-medium text-text-secondary">{project.category}</p>
+                    </div>
+                    <ArrowUpRightIcon className="mt-0.5 shrink-0 text-text-primary transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
                 </a>
-              </Reveal>
-            );
-          })}
-        </ul>
-      ) : (
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
-          {projects.map((project, i) => (
-            <Reveal key={project.title} delay={(i % 2) * 0.1} className="flex flex-col gap-[17px]">
-              <a href={project.href} className="group flex flex-col gap-[17px]">
-                <MediaTile
-                  src={project.image}
-                  alt={project.title}
-                  className="aspect-[430/319] w-full rounded-[10px] transition-transform duration-300 group-hover:-translate-y-1"
-                />
-                <div className="flex items-start gap-1.5">
-                  <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-                    <p className="text-body-md font-medium text-text-primary">{project.title}</p>
-                    <p className="text-caption-md font-medium text-text-secondary">
-                      {project.category}
-                    </p>
-                  </div>
-                  <ArrowUpRightIcon className="mt-0.5 shrink-0 text-text-primary transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </div>
-              </a>
-            </Reveal>
-          ))}
-        </div>
-      )}
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

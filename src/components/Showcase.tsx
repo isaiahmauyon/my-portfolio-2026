@@ -12,7 +12,7 @@ export default function Showcase() {
               src={item.image}
               alt={item.title}
               fit="contain"
-              className="aspect-[526/391] w-full"
+              className="aspect-[526/391] w-full transition-transform duration-500 ease-out hover:scale-[1.03]"
             />
           </Reveal>
         ))}

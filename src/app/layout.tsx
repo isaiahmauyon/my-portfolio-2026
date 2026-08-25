@@ -3,6 +3,7 @@ import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/data/site";
 import Navbar from "@/components/Navbar";
+import MotionProvider from "@/components/MotionProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -47,8 +48,10 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="font-sans">
-        <Navbar />
-        <main>{children}</main>
+        <MotionProvider>
+          <Navbar />
+          <main>{children}</main>
+        </MotionProvider>
       </body>
     </html>
   );
