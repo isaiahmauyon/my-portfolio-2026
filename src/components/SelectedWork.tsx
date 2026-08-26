@@ -208,7 +208,7 @@ export default function SelectedWork() {
                       <p className="text-body-md font-medium text-text-primary">{project.title}</p>
                       <p className="text-caption-md font-medium text-text-secondary">{project.category}</p>
                     </div>
-                    <ArrowUpRightIcon className="mt-0.5 shrink-0 text-text-primary transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRightIcon data-sound className="mt-0.5 shrink-0 text-text-primary transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
                 </a>
               </motion.div>
